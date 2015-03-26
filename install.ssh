@@ -1,6 +1,6 @@
 #!/bin/bash
  
-# Asugúrate de que estás actualizado
+# Asegúrate de que estás actualizado
 yum -y update && yum -y install wget
  
 # Instala el repositorio de EPEL 
@@ -17,10 +17,10 @@ yum -y install gcc make gcc-c++ cpp kernel-headers.x86_64 libxml2-devel openssl-
     libmcrypt-devel unixODBC-devel pcre-devel sqlite-devel db4-devel enchant-devel libXpm-devel \
     mysql-devel readline-devel libedit-devel recode-devel libtidy-devel libtool-ltdl-devel
     
-# Download PHP
+# Descarga PHP puedes sustituir 5.5.20 por 5.6.7 para instarlar la versión 5.6 de PHP
 wget http://nl1.php.net/get/php-5.5.20.tar.gz/from/this/mirror -O /php/php-5.5.20.tar.gz
  
-# Descarga PHP puedes sustituir 5.5.20 por 5.6.7 para instarlar la versión 5.6 de PHP
+# Descomprime el fichero que acabamos de descargar
 tar xzvf /php/php-5.5.20.tar.gz
  
 # Nos movemos a la carpeta extraída
