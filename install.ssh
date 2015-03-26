@@ -1,16 +1,16 @@
 #!/bin/bash
  
-# Make sure you are up to date
+# Asugúrate de que estás actualizado
 yum -y update && yum -y install wget
  
-# Install EPEL repository
+# Instala el repositorio de EPEL 
 rpm -ivh http://dl.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-8.noarch.rpm
  
-# Get us a clean working directory
+# Crea un directorio limpio
 mkdir /php
 cd /php
  
-# Install PHP dependencies
+# Instala las dependencias PHP
 yum -y install gcc make gcc-c++ cpp kernel-headers.x86_64 libxml2-devel openssl-devel \
     bzip2-devel libjpeg-devel libpng-devel freetype-devel openldap-devel postgresql-devel \
     aspell-devel net-snmp-devel libxslt-devel libc-client-devel libicu-devel gmp-devel curl-devel \
@@ -20,13 +20,13 @@ yum -y install gcc make gcc-c++ cpp kernel-headers.x86_64 libxml2-devel openssl-
 # Download PHP
 wget http://nl1.php.net/get/php-5.5.20.tar.gz/from/this/mirror -O /php/php-5.5.20.tar.gz
  
-# Extract PHP
+# Descarga PHP puedes sustituir 5.5.20 por 5.6.7 para instarlar la versión 5.6 de PHP
 tar xzvf /php/php-5.5.20.tar.gz
  
-# Move to unpacked folder
+# Nos movemos a la carpeta extraída
 cd /php/php-5.5.20
  
-# Configure PHP build script
+# Configuramos el constructor para posteriormente compilarlo
 ./configure \
     --with-libdir=lib64 \
     --cache-file=./config.cache \
@@ -88,18 +88,18 @@ cd /php/php-5.5.20
     --enable-intl \
     --enable-opcache
     
-# Build & Install
+# Construimos e instalamos
 make && make install
  
-# Create a default php.ini
+# Creamos el php.ini por defecto
 mkdir /php/php-5.5.20/etc
 cp -a /etc/php.ini /php/php-5.5.20/etc/php.ini
  
-# Set the timezone
+# Configuramos la zona horaria
 timezone=$(grep -oP '(?<=")\w+/\w+' /etc/sysconfig/clock)
 sed -i "s#;date.timezone =#date.timezone = $timezone#" /php/php-5.5.20/etc/php.ini
  
-# Register with Plesk
+# Registramos nuestra nueva versión de PHP en Plesk
 /usr/local/psa/bin/php_handler \
     --add \
     -displayname "5.5.20" \
